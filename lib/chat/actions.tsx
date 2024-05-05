@@ -40,6 +40,10 @@ async function submitUserMessage(content: string) {
   })
   let textStream: undefined | ReturnType<typeof createStreamableValue<string>>
   let textNode: undefined | React.ReactNode
+  const bookTitles: [string, ...string[]] = Object.keys(books) as [
+    string,
+    ...string[]
+  ]
 
   const result = await streamUI({
     model: openai('gpt-4-turbo'),
@@ -81,7 +85,7 @@ async function submitUserMessage(content: string) {
       getBook: {
         description: 'Get a book',
         parameters: z.object({
-          title: z.enum(Object.keys(books))
+          title: z.enum(bookTitles)
         }),
         generate: async function* ({ title }) {
           yield <div>Getting {title}...</div>
