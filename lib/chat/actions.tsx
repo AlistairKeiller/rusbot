@@ -2,7 +2,6 @@ import 'server-only'
 
 import {
   createAI,
-  createStreamableUI,
   getMutableAIState,
   getAIState,
   streamUI,
@@ -10,27 +9,9 @@ import {
 } from 'ai/rsc'
 import { openai } from '@ai-sdk/openai'
 
-import {
-  spinner,
-  BotCard,
-  BotMessage,
-  SystemMessage,
-  Stock,
-  Purchase
-} from '@/components/stocks'
+import { BotMessage } from '@/components/stocks'
 
-import { z } from 'zod'
-import { EventsSkeleton } from '@/components/stocks/events-skeleton'
-import { Events } from '@/components/stocks/events'
-import { StocksSkeleton } from '@/components/stocks/stocks-skeleton'
-import { Stocks } from '@/components/stocks/stocks'
-import { StockSkeleton } from '@/components/stocks/stock-skeleton'
-import {
-  formatNumber,
-  runAsyncFnWithoutBlocking,
-  sleep,
-  nanoid
-} from '@/lib/utils'
+import { nanoid } from '@/lib/utils'
 import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/stocks/message'
 import { Chat } from '@/lib/types'
@@ -59,7 +40,7 @@ async function submitUserMessage(content: string) {
   const result = await streamUI({
     model: openai('gpt-4-turbo'),
     initial: <SpinnerMessage />,
-    system: `I want you to act like Leo Tolstoy. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character.`,
+    system: `I want you to act like Leo Tolstoy in 1906. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character.`,
     messages: [
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
@@ -91,19 +72,6 @@ async function submitUserMessage(content: string) {
       }
 
       return textNode
-    },
-    tools: {
-      listBooks: {
-        description: 'List possible books to query.',
-        parameters: z.object({}),
-        generate: async function* ({}) {
-          return (
-            <BotCard>
-              <StocksSkeleton />
-            </BotCard>
-          )
-        }
-      }
     }
   })
 
