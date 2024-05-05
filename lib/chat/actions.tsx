@@ -81,7 +81,7 @@ async function submitUserMessage(content: string) {
       getBook: {
         description: 'Get a book',
         parameters: z.object({
-          title: z.enum([...Object.keys(books)])
+          title: z.enum(Object.keys(books))
         }),
         generate: async function* ({ title }) {
           yield <div>Getting {title}...</div>
