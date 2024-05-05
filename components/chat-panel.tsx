@@ -37,8 +37,8 @@ export function ChatPanel({
   const exampleMessages = [
     {
       heading: 'What is my',
-      subheading: 'favorite line from my books?',
-      message: `What is my favorite line from my books?`
+      subheading: 'favorite line from your books?',
+      message: `What is my favorite line from your books?`
     },
     {
       heading: 'Who dies',
@@ -47,8 +47,8 @@ export function ChatPanel({
     },
     {
       heading: 'Where did',
-      subheading: 'I die?',
-      message: `Where did I die?`
+      subheading: 'you die?',
+      message: `Where did you die?`
     },
     {
       heading: 'When is',
