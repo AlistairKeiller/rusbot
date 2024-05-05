@@ -97,6 +97,50 @@ async function submitUserMessage(content: string) {
           })
           return <div>listed books</div>
         }
+      },
+      getBook: {
+        description: 'Get a book',
+        parameters: z.object({
+          title: z.string()
+        }),
+        generate: async function* ({ title }) {
+          yield <div>getting book</div>
+          try {
+            const response = await fetch('/books/' + title + '.txt')
+            if (response.ok) {
+              const bookContent = await response.text()
+              aiState.done({
+                ...aiState.get(),
+                messages: [
+                  ...aiState.get().messages,
+                  {
+                    id: nanoid(),
+                    role: 'assistant',
+                    name: 'getBook',
+                    content: `Here is the content of ${title}: ${bookContent}`
+                  }
+                ]
+              })
+              yield <div>Here is the book: {title}</div>
+            } else {
+              throw new Error('Book not found')
+            }
+          } catch (error) {
+            aiState.done({
+              ...aiState.get(),
+              messages: [
+                ...aiState.get().messages,
+                {
+                  id: nanoid(),
+                  role: 'assistant',
+                  name: 'getBook',
+                  content: `Book "${title}" not found.`
+                }
+              ]
+            })
+            return <div>Book {title} not found.</div>
+          }
+        }
       }
     }
   })
