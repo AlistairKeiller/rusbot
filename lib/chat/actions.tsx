@@ -19,6 +19,8 @@ import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
 import { BotMessage } from '@/components/stocks'
 
+const BASE_URL = 'https://localhost:3000'
+
 async function submitUserMessage(content: string) {
   'use server'
 
@@ -81,9 +83,11 @@ async function submitUserMessage(content: string) {
           title: z.string()
         }),
         generate: async function* ({ title }) {
-          yield <div>getting book</div>
+          yield <div>Getting book...</div>
           try {
-            const response = await fetch('/books/' + title + '.txt')
+            const response = await fetch(
+              `${BASE_URL}/${encodeURIComponent(title)}.txt`
+            )
             if (response.ok) {
               const bookContent = await response.text()
               aiState.done({
