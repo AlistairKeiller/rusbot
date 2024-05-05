@@ -36,24 +36,24 @@ export function ChatPanel({
 
   const exampleMessages = [
     {
-      heading: 'What are the',
-      subheading: 'trending memecoins today?',
-      message: `What are the trending memecoins today?`
+      heading: 'What is my',
+      subheading: 'favorite line from my books?',
+      message: `What is my favorite line from my books?`
     },
     {
-      heading: 'What is the price of',
-      subheading: '$DOGE right now?',
-      message: 'What is the price of $DOGE right now?'
+      heading: 'Who dies',
+      subheading: 'at the end of Hadji Murat?',
+      message: 'Who dies at the end of Hadji Murat?'
     },
     {
-      heading: 'I would like to buy',
-      subheading: '42 $DOGE',
+      heading: 'Where did',
+      subheading: 'I die?',
       message: `I would like to buy 42 $DOGE`
     },
     {
-      heading: 'What are some',
-      subheading: `recent events about $DOGE?`,
-      message: `What are some recent events about $DOGE?`
+      heading: 'When is',
+      subheading: `Hadji Murat set?`,
+      message: `When is Hadji Murat set?`
     }
   ]
 
@@ -131,7 +131,6 @@ export function ChatPanel({
 
         <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4">
           <PromptForm input={input} setInput={setInput} />
-          <FooterText className="hidden sm:block" />
         </div>
       </div>
     </div>

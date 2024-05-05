@@ -138,8 +138,9 @@ async function submitUserMessage(content: string) {
   let textNode: undefined | React.ReactNode
 
   const result = await streamUI({
-    model: openai('gpt-3.5-turbo'),
+    model: openai('gpt-4-turbo'),
     initial: <SpinnerMessage />,
+    system: `I want you to act like Leo Tolstoy. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character.`,
     // system: `\
     // You are a stock trading conversation bot and you can help users buy stocks, step by step.
     // You and the user can discuss stock prices and the user can adjust the amount of stocks they want to buy, or place an order, in the UI.
