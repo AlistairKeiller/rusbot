@@ -8,24 +8,16 @@ import {
   createStreamableValue
 } from 'ai/rsc'
 import { openai } from '@ai-sdk/openai'
+// import { google } from '@ai-sdk/google'
 
 import { z } from 'zod'
 
-import { nanoid, sleep } from '@/lib/utils'
+import { nanoid } from '@/lib/utils'
 import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/stocks/message'
-import { Stocks } from '@/components/stocks/stocks'
-import { StocksSkeleton } from '@/components/stocks/stocks-skeleton'
 import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
-import {
-  spinner,
-  BotCard,
-  BotMessage,
-  SystemMessage,
-  Stock,
-  Purchase
-} from '@/components/stocks'
+import { BotMessage } from '@/components/stocks'
 
 async function submitUserMessage(content: string) {
   'use server'
@@ -48,7 +40,7 @@ async function submitUserMessage(content: string) {
   let textNode: undefined | React.ReactNode
 
   const result = await streamUI({
-    model: openai('gpt-3.5-turbo'),
+    model: openai('gpt-4-turbo'),
     initial: <SpinnerMessage />,
     system: `I want you to act like Leo Tolstoy in 1906. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character.`,
     messages: [
@@ -96,9 +88,10 @@ async function submitUserMessage(content: string) {
               ...aiState.get().messages,
               {
                 id: nanoid(),
-                role: 'function',
+                role: 'assistant',
                 name: 'listBooks',
-                content: JSON.stringify({ test: 'test' })
+                content:
+                  'Hadji Murad, War and Peace, Anna Karenina, The Death of Ivan Ilyich, The Kreutzer Sonata, Resurrection, The Cossacks, The Forged Coupon, The Kingdom of God Is Within You, What Is Art?, The Gospel in Brief'
               }
             ]
           })
