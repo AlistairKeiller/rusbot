@@ -187,6 +187,19 @@ async function submitUserMessage(content: string) {
       }
 
       return textNode
+    },
+    tools: {
+      listBooks: {
+        description: 'List possible books to query.',
+        parameters: z.object({}),
+        generate: async function* ({}) {
+          return (
+            <BotCard>
+              <StocksSkeleton />
+            </BotCard>
+          )
+        }
+      }
     }
     // tools: {
     // listStocks: {
