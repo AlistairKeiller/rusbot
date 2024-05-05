@@ -48,7 +48,7 @@ export function ChatPanel({
     {
       heading: 'Where did',
       subheading: 'I die?',
-      message: `I would like to buy 42 $DOGE`
+      message: `Where did I die?`
     },
     {
       heading: 'When is',
