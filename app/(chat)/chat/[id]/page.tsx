@@ -58,3 +58,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
     </AI>
   )
 }
+
+export const runtime = 'edge'
+export const preferredRegion = 'home'
+export const maxDuration = 300
