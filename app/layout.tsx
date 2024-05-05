@@ -13,11 +13,11 @@ export const metadata = {
     ? new URL(`https://${process.env.VERCEL_URL}`)
     : undefined,
   title: {
-    default: 'LeoBotstoy',
-    template: `%s - LeoBotstoy`
+    default: 'Chekhov Chat',
+    template: `%s - Chekhov Chat`
   },
   description:
-    'I, LeoBotstoy, will tell you how Alistair thinks that Tolstoy would have responded in 1906, using his 43 books for context.',
+    'I, Chekhov Chat, will tell you how Alistair thinks that Chekhov would have responded in 1890, using his 43 books for context.',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',

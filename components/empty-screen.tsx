@@ -8,10 +8,10 @@ export function EmptyScreen() {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="flex flex-col gap-2 rounded-lg border bg-background p-8">
-        <h1 className="text-lg font-semibold">Welcome to LeoBotstoy!</h1>
+        <h1 className="text-lg font-semibold">Welcome to Chekhov Chat!</h1>
         <p className="leading-normal text-muted-foreground">
-          I, LeoBotstoy, will tell you how Alistair thinks that Tolstoy would
-          have responded in 1906, using his 43 books for context.
+          I, Chekhov Chat, will tell you how Alistair thinks that Chekhov would
+          have responded in 1890, using his 75 books for context.
         </p>
       </div>
     </div>
