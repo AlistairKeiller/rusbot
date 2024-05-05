@@ -449,25 +449,26 @@ export const getUIStateFromAIState = (aiState: Chat) => {
     .map((message, index) => ({
       id: `${aiState.chatId}-${index}`,
       display:
-        message.role === 'function' ? (
-          message.name === 'listStocks' ? (
-            <BotCard>
-              <Stocks props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : message.name === 'showStockPrice' ? (
-            <BotCard>
-              <Stock props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : message.name === 'showStockPurchase' ? (
-            <BotCard>
-              <Purchase props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : message.name === 'getEvents' ? (
-            <BotCard>
-              <Events props={JSON.parse(message.content)} />
-            </BotCard>
-          ) : null
-        ) : message.role === 'user' ? (
+        // message.role === 'function' ? (
+        //   message.name === 'listStocks' ? (
+        //     <BotCard>
+        //       <Stocks props={JSON.parse(message.content)} />
+        //     </BotCard>
+        //   ) : message.name === 'showStockPrice' ? (
+        //     <BotCard>
+        //       <Stock props={JSON.parse(message.content)} />
+        //     </BotCard>
+        //   ) : message.name === 'showStockPurchase' ? (
+        //     <BotCard>
+        //       <Purchase props={JSON.parse(message.content)} />
+        //     </BotCard>
+        //   ) : message.name === 'getEvents' ? (
+        //     <BotCard>
+        //       <Events props={JSON.parse(message.content)} />
+        //     </BotCard>
+        //   ) : null
+        // ) :
+        message.role === 'user' ? (
           <UserMessage>{message.content}</UserMessage>
         ) : (
           <BotMessage content={message.content} />
