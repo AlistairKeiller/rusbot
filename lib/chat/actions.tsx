@@ -20,8 +20,6 @@ import { auth } from '@/auth'
 import { BotMessage } from '@/components/stocks'
 import { books } from '@/lib/books'
 
-const BASE_URL = 'https://localhost:3000'
-
 async function submitUserMessage(content: string) {
   'use server'
 
