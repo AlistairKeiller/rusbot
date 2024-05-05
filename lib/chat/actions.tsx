@@ -44,7 +44,7 @@ async function submitUserMessage(content: string) {
   const result = await streamUI({
     model: openai('gpt-4-turbo'),
     initial: <SpinnerMessage />,
-    system: `I want you to act like Leo Tolstoy in 1906. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character.`,
+    system: `I want you to act like Leo Tolstoy in 1906. I want you to respond and answer like the chracter. Do not write any explanations and only answer like the character would. You must know all of the knowledge of character. Therefore, liberally use getBook when a question that requires specific book context arises.`,
     messages: [
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
