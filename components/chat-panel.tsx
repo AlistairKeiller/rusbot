@@ -36,14 +36,14 @@ export function ChatPanel({
 
   const exampleMessages = [
     {
-      heading: 'What is my',
+      heading: 'What is your',
       subheading: 'favorite line from your books?',
-      message: `What is my favorite line from your books?`
+      message: `What is your favorite line from your books?`
     },
     {
       heading: 'Who dies',
-      subheading: 'at the end of Hadji Murat?',
-      message: 'Who dies at the end of Hadji Murat?'
+      subheading: 'at the end of Ward #6?',
+      message: 'Who dies at the end of Ward #6?'
     },
     {
       heading: 'Where did',
@@ -52,8 +52,8 @@ export function ChatPanel({
     },
     {
       heading: 'When is',
-      subheading: `Hadji Murat set?`,
-      message: `When is Hadji Murat set?`
+      subheading: `Ward #6 set?`,
+      message: `When is Ward #6 set?`
     }
   ]
 
