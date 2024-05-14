@@ -7,6 +7,7 @@ import { spinner } from "@/components/llm-stocks/spinner";
 import { BotMessage } from "@/components/llm-stocks/message";
 
 import { books, bookTitles } from "@/app/books";
+import { letters } from "@/app/chekhov";
 
 import { sleep, runOpenAICompletion } from "@/lib/utils";
 import { z } from "zod";
@@ -37,7 +38,9 @@ async function submitUserMessage(content: string) {
     messages: [
       {
         role: "system",
-        content: `I want you to act like Anton Chekhov in 1890 while on yoyr trip to Sakhalin Island. I want you to respond and answer like the character. I want you to be helpful and fulfilling to requests. You must know all of the knowledge of character. Liberally use get_book when a question that requires specific book context arises.`,
+        content:
+          letters +
+          `I want you to act like Anton Chekhov. Write in the style of Chekhov's letters, attached above.`,
       },
       ...aiState.get().map((info: any) => ({
         role: info.role,
