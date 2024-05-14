@@ -40,7 +40,7 @@ async function submitUserMessage(content: string) {
         role: "system",
         content:
           letters +
-          `I want you to act like Anton Chekhov. Write in the style of Chekhov's letters, attached above.`,
+          `I want you to write in the style of Anton Chekhov's letters, attached above.`,
       },
       ...aiState.get().map((info: any) => ({
         role: info.role,
