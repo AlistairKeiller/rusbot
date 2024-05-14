@@ -1,65 +1,78 @@
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import type { Metadata } from "next";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "@/components/ui/toaster";
+import "./globals.css";
 
-import '@/app/globals.css'
-import { cn } from '@/lib/utils'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { Providers } from '@/components/providers'
-import { Header } from '@/components/header'
-import { Toaster } from '@/components/ui/sonner'
+import { AI } from "./action";
+import { Header } from "@/components/header";
+import { Providers } from "@/components/providers";
 
-export const metadata = {
-  metadataBase: process.env.VERCEL_URL
-    ? new URL(`https://${process.env.VERCEL_URL}`)
-    : undefined,
+const meta = {
+  title: "Chekhov Chat",
+  description: "Chekhov Chat is a window into Chekhov's mind.",
+};
+export const metadata: Metadata = {
+  ...meta,
   title: {
-    default: 'Chekhov Chat',
-    template: `%s - Chekhov Chat`
+    default: "Chekhov Chat",
+    template: `%s - Chekhov Chat`,
   },
-  description:
-    'I, Chekhov Chat, will tell you how Alistair thinks that Chekhov would have responded in 1890, using his 43 books for context.',
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png'
-  }
-}
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  twitter: {
+    ...meta,
+    card: "summary_large_image",
+    site: "@vercel",
+  },
+  openGraph: {
+    ...meta,
+    locale: "en-US",
+    type: "website",
+  },
+};
 
 export const viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' }
-  ]
-}
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          'font-sans antialiased',
-          GeistSans.variable,
-          GeistMono.variable
-        )}
+        className={`font-sans antialiased ${GeistSans.variable} ${GeistMono.variable}`}
       >
-        <Toaster position="top-center" />
-        <Providers
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex flex-col flex-1 bg-muted/50">{children}</main>
-          </div>
-          <TailwindIndicator />
-        </Providers>
+        <Toaster />
+        <AI>
+          <Providers
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex flex-col flex-1 bg-muted/50 dark:bg-background">
+                {children}
+              </main>
+            </div>
+          </Providers>
+        </AI>
+        <Analytics />
       </body>
     </html>
-  )
+  );
 }
+
+export const runtime = "edge";
